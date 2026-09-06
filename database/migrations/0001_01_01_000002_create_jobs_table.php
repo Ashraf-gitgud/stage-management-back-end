@@ -35,16 +35,18 @@ return new class extends Migration
         });
 
         Schema::create('failed_jobs', function (Blueprint $table) {
-            $table->id();
-            $table->string('uuid')->unique();
-            $table->string('connection');
-            $table->string('queue');
-            $table->longText('payload');
-            $table->longText('exception');
-            $table->timestamp('failed_at')->useCurrent();
+        $table->id();
 
-            $table->index(['connection', 'queue', 'failed_at']);
-        });
+        $table->string('uuid')->unique();
+        $table->string('connection', 100);
+        $table->string('queue', 100);
+
+        $table->longText('payload');
+        $table->longText('exception');
+        $table->timestamp('failed_at')->useCurrent();
+
+        $table->index(['connection', 'queue', 'failed_at']);
+    });
     }
 
     /**
